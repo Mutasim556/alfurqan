@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -122,29 +123,27 @@ class BackendLanguageController extends Controller
     }
 
     public function storeTranslateString(Request $data) : RedirectResponse {
-        $api_key =ApiKey::first();
-        if(!$api_key){
-            return back()->with('no_api_key',__("admin_local.No api key . Please insert a valid Microsoft Translate Api Key first"));
-        }
+        // $api_key =ApiKey::first();
+        // if(!$api_key){
+        //     return back()->with('no_api_key',__("admin_local.No api key . Please insert a valid Microsoft Translate Api Key first"));
+        // }
         $languageCode = $data->lang;
         $languageStrings = trans($data->file_name, [], $data->lang);
         $keyString = array_keys($languageStrings);
-        $keyText = implode(' || ', $keyString);
-        $response  = Http::withHeaders([
-            'X-RapidAPI-Host' => 'microsoft-translator-text.p.rapidapi.com',
-            // 'X-RapidAPI-Key' => 'fdd77a90f3msh8a9f787264252d4p1cb68ejsn41d6ad25230e',
-            'X-RapidAPI-Key' => $api_key->api_key,
-            'content-type' => 'application/json',
-        ])->post('https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=' . $languageCode . '&api-version=3.0&profanityAction=NoAction&textType=plain', [
-            [
-                "Text" => $keyText
-            ]
-        ]);
-        if($response->status()===403){
-            return back()->with('no_api_key',__("admin_local.Invalid Api Key ! Please insert the correct one"));
-        }
-        $translatedText = json_decode($response->body())[0]->translations[0]->text;
-        $translatedString = explode(' || ', $translatedText);
+        $keyText = implode('|| ', $keyString);
+        // $response  = Http::withHeaders([
+        //     'X-RapidAPI-Host' => 'microsoft-translator-text.p.rapidapi.com',
+        //     // 'X-RapidAPI-Key' => 'fdd77a90f3msh8a9f787264252d4p1cb68ejsn41d6ad25230e',
+        //     'X-RapidAPI-Key' => $api_key->api_key,
+        //     'content-type' => 'application/json',
+        // ])->post('https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D=' . $languageCode . '&api-version=3.0&profanityAction=NoAction&textType=plain', [
+        //     [
+        //         "Text" => $keyText
+        //     ]
+        // ]);
+        $translatedText = GoogleTranslate::trans($keyText, $languageCode, 'en');
+        $translatedString = explode('|| ', $translatedText);
+        // dd($keyString,$translatedString);
         $updatedArray = array_combine($keyString, $translatedString);
 
         $phpArray = "<?php\n\nreturn " . var_export($updatedArray, true) . ";\n";

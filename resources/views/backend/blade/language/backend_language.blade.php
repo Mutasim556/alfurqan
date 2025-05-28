@@ -3,7 +3,7 @@
     {{ __('admin_local.Admin Language') }}
 @endpush
 @push('css')
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/admin/assets/css/custom.css') }}">
 @endpush
 @push('page_css')
     <style>
@@ -152,14 +152,14 @@
                     </div>
 
                     <div class="card-body">
-                        @if (hasPermission(['backend-api-accesskey']))
+                        {{-- @if (hasPermission(['backend-api-accesskey']))
                         <div class="row mb-3">
                             <div class="col-md-12 text-right">
                                 <button class="btn btn-info" style="float: right;" type="btn" data-bs-toggle="modal"
                                     data-bs-target="#edit-apikey-modal">+  {{ __('admin_local.Add Api Key')}}</button>
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
                         <ul class="nav nav-tabs nav-primary" id="pills-warningtab" role="tablist">
                             @foreach ($languages as $language)
                                 <li class="nav-item"><a
@@ -186,7 +186,7 @@
                                         <div class="col-md-3">
                                             <form method="POST" action="{{ route('admin.backend.language.store') }}">
                                                 @csrf
-                                                <input type="hidden" value="{{ resource_path('views/backend') }},{{ app_path('Http/Controllers/Admin') }},{{ app_path('Http/Middleware/Admin') }}" name="directory">
+                                                <input type="hidden" value="{{ resource_path('views/backend') }},{{ app_path('Http/Controllers/Admin') }},{{ app_path('Http/Controllers/FrontEnd') }},{{ app_path('Http/Middleware/Admin') }},{{ app_path('Http/Requests') }},{{ resource_path('views/frontend') }},{{ resource_path('views/errors') }}" name="directory">
                                                 <input type="hidden" value="admin_local" name="file_name">
                                                 <input type="hidden" value="{{ $language->lang }}" name="lang">
                                                 <button type="submit" class="btn btn-success m-t-30"> {{ __('admin_local.Generate String')}}</button>
@@ -252,10 +252,10 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('admin/assets/js/sweet-alert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/switchery/switchery.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('public/admin/assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('public/admin/assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/admin/plugins/switchery/switchery.min.js') }}"></script>
+    <script src="{{ asset('public/admin/assets/js/select2/select2.full.min.js') }}"></script>
     <script>
         $('[data-toggle="switchery"]').each(function(idx, obj) {
             new Switchery($(this)[0], $(this).data());
@@ -280,7 +280,7 @@
         var updating = "{{ __('admin_local.Updating') }}"
         var update_btn = "{{ __('admin_local.Update') }}"
     </script>
-    <script src="{{ asset('admin/custom/language/admin_localization.js') }}"></script>
+    <script src="{{ asset('public/admin/custom/language/admin_localization.js') }}"></script>
 
     <script>
         function invalidApiKey(x) {

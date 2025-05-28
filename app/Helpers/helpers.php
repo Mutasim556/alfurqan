@@ -55,3 +55,8 @@ function routeExist(string $routeName){
 function maintenanceMailSwitch(){
     return false;
 } 
+
+function getLangs(){
+    $languages = Language::where([['status',1],['delete',0],['lang','!=','en']])->get();
+    return $languages;
+}

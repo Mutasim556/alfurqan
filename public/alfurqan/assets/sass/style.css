@@ -1623,26 +1623,28 @@ img {
 
 .wpo-site-header .header-right .search-toggle-btn,
 .wpo-site-header .header-right .cart-toggle-btn {
-  background-color: transparent;
+  background: #DB9E30;
   line-height: 0.66em;
-  color: #232f4b;
-  width: 50px;
-  height: 50px;
+  color: #ffffff;
+  /* width: 50px; */
+  /* height: 50px; */
+  padding: 10px;
   border: 0;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 @media (max-width: 1200px) {
   .wpo-site-header .header-right .search-toggle-btn,
   .wpo-site-header .header-right .cart-toggle-btn {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 30px;
   }
 }
 @media (max-width: 991px) {
   .wpo-site-header .header-right .search-toggle-btn,
   .wpo-site-header .header-right .cart-toggle-btn {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    padding: 0px 10px;
+    font-size: 10px;
   }
 }
 @media (max-width: 991px) {
@@ -1679,14 +1681,14 @@ img {
 }
 .cart-search-contact .header-search-form {
   position: absolute;
-  width: 350px;
+  width: 200px;
   right: 0;
-  top: 75px;
+  top: 35px;
   transform: scale(0);
   opacity: 0;
   visibility: hidden;
   background: #fff;
-  padding: 30px;
+  padding: 10px;
   border-radius: 6px;
   transition: all 0.5s;
   box-shadow: -2px 18px 40px -9px rgb(153, 153, 153);
@@ -2039,7 +2041,7 @@ img {
     position: relative;
     color: #323232;
     font-family: "Cinzel Decorative", serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 30px;
     text-transform: capitalize;
@@ -2364,7 +2366,7 @@ img {
 @media (max-width: 1400px) {
   .wpo-site-header #navbar > ul > li > a {
     padding: 30px 10px;
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 @media (max-width: 1200px) {
@@ -2452,7 +2454,7 @@ img {
 }
 /* header-s2 */
 .header-s2 .wpo-site-header {
-  background-color: transparent;
+  background-color: #fff4e1;
   position: absolute;
   left: 0;
   top: 0;
@@ -6816,7 +6818,7 @@ img {
 .wpo-donations-details,
 .wpo-doanation-payment {
   padding: 30px;
-  border: 1px solid #ebebeb;
+  border: 1px solid #DB9E30;
   margin-bottom: 40px;
 }
 
@@ -6833,13 +6835,15 @@ img {
 }
 
 .wpo-donations-amount input,
+.wpo-donations-amount select,
 .wpo-donations-details input,
+.wpo-donations-details select,
 .wpo-donations-details textarea {
   background: transparent;
   width: 100%;
   height: 50px;
   border: 0;
-  border: 1px solid #ebebeb;
+  border: 1px solid #111010;
   padding-left: 15px;
   border-radius: 0;
   box-shadow: none !important;

@@ -142,14 +142,13 @@
                                 </div>
                                 <div class="more_lang">
                                     @php
-                                        $languages = DB::table('languages')
-                                            ->where([['status', 1], ['delete', 0]])
+                                        $languages =  \App\Models\Admin\Language::where([['status', 1], ['delete', 0]])
                                             ->get();
                                     @endphp
                                     @foreach ($languages as $language)
-                                        <div class="lang {{ getLanguageSession()==$language->lang?'selected':'' }}" onclick="change_lang('{{ $language->lang }}')">
-                                            <span class="lang-txt">{{ $language->name }}</span>
-                                        </div>
+                                        <a class="lang {{ getLanguageSession()==$language->lang?'selected':'' }}" href="{{ route('admin.changeLanguage',$language->lang) }}">
+                                            <span class="lang-txt">{{  $language->name, $language->lang }}</span>
+                                        </a>
                                     @endforeach
 
                                     {{-- <div class="lang selected" onclick="change_lang('bn')"><i
@@ -255,11 +254,11 @@
         $(document).ready(function() {
             $('body').attr('class', localStorage.getItem('body'))
         })
-
+        var hbase_url = `{{ \URL::to('/') }}`;
         function change_lang(x) {
             $.ajax({
                 type: "get",
-                url: window.location.origin+"/admin/change/language/" + x,
+                url: hbase_url+"/admin/change/language/" + x,
                 success: function(data) {
                     window.location.reload();
                 },

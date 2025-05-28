@@ -9,9 +9,9 @@ use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
-
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(function(){
     Route::controller(AdminAuthController::class)->group(function(){
         Route::post('/forget-password','forgetPassword')->name('forget_password');
         Route::get('/reset-password','resetPasswordIndex')->name('reset_password');
@@ -64,5 +64,20 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/secret-code/delete/{id}',[MaintenanceModeController::class,'destroy'])->name('secret-code.delete');
             Route::get('/secret-code/delete-all',[MaintenanceModeController::class,'destroyAll'])->name('secret-code.delete-all');
         });
+
+
     });
+
+    Route::get('/translate-string',function(){
+        $data = [];
+        $langs = getLangs();
+        foreach($langs as $lang){
+            $darr =  GoogleTranslate::trans(request()->tdata, $lang->lang, 'en');
+            array_push($data,$darr);
+        }
+        return [
+            'tdata'=>$data,
+            'langs'=>$langs 
+        ];
+    })->name('translateString');
 });

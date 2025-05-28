@@ -1,6 +1,10 @@
 @extends('frontend.shared.app')
-
+@push('title')
+    {{ __('admin_local.Home') }}
+@endpush
 @section('content')
+
+
 <!-- start of static-hero-s2 -->
 <section class="static-hero-s2">
     <div class="container-fluid">

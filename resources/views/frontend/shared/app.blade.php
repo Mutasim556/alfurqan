@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="wpOceans">
     <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
-    <title>Shared on THEMELOCK.COM - Istiqbal | Islamic Centre & Mosque HTML5 Template</title>
+    <title>{{ env('APP_BACKEND_NAME') }} - @stack('title')</title>
     <link href="{{ asset('public/alfurqan/assets/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('public/alfurqan/assets/css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('public/alfurqan/assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -21,6 +21,7 @@
     <link href="{{ asset('public/alfurqan/assets/css/jquery.fancybox.css') }}" rel="stylesheet">
     <link href="{{ asset('public/alfurqan/assets/css/odometer-theme-default.css') }}" rel="stylesheet">
     <link href="{{ asset('public/alfurqan/assets/sass/style.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 
 <body>
@@ -59,7 +60,7 @@
                             </div>
                             <div class="col-lg-2 col-md-6 col-6">
                                 <div class="navbar-header">
-                                    <a class="navbar-brand" href="index.html"><img src="assets/images/logo.svg"
+                                    <a class="navbar-brand" href="index.html"><img src="{{ asset('public/alfurqan/assets/images/logo.webp') }}"
                                             alt="logo"></a>
                                 </div>
                             </div>
@@ -67,51 +68,20 @@
                                 <div id="navbar" class="collapse navbar-collapse navigation-holder">
                                     <button class="menu-close"><i class="ti-close"></i></button>
                                     <ul class="nav navbar-nav mb-2 mb-lg-0">
+                                        <li><a href="{{ url('/') }}">{{ __('admin_local.Home') }}</a></li>
                                         <li class="menu-item-has-children">
-                                            <a class="active" href="#">Home</a>
+                                            <a href="#">{{ __('admin_local.Announcements') }}</a>
                                             <ul class="sub-menu">
-                                                <li><a href="index.html">Home style 1</a></li>
-                                                <li><a href="index-2.html">Home style 2</a></li>
-                                                <li><a class="active" href="index-3.html">Home style 3</a></li>
+                                                <li><a href="blog.html">{{ __('admin_local.Jummah') }}</a></li>
+                                                <li><a href="blog.html">{{ __('admin_local.Events') }}</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Event</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="event.html">Event 1</a></li>
-                                                <li><a href="event-s2.html">Event 2</a></li>
-                                                <li><a href="event-single.html">Event single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Service</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="service.html">Service 1</a></li>
-                                                <li><a href="service-s2.html">Service 2</a></li>
-                                                <li><a href="service-single.html">Service Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Shop</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="shop.html">Shop</a></li>
-                                                <li><a href="shop-single.html">Shop single</a></li>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="checkout.html">Chackout</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">pages</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="donate.html">Donate</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="register.html">register</a></li>
-                                                <li><a href="forgot.html">forgot password</a></li>
-                                                <li><a href="404.html">404</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
+                                        <li><a href="{{ route('donation.index') }}">{{ __('admin_local.Donate') }}</a></li>
+                                        <li><a href="{{ url('/') }}">{{ __('admin_local.Programs') }}</a></li>
+                                        <li><a href="{{ url('/') }}">{{ __('admin_local.Services') }}</a></li>
+                                        <li><a href="{{ url('/') }}">{{ __('admin_local.About') }}</a></li>
+                                        <li><a href="{{ url('/') }}">{{ __('admin_local.Contact') }}</a></li>
+                                        {{-- <li class="menu-item-has-children">
                                             <a href="#">Blog</a>
                                             <ul class="sub-menu">
                                                 <li><a href="blog.html">Blog right sidebar</a></li>
@@ -129,64 +99,27 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        </li> --}}
+                                        {{-- <li><a href="contact.html">Contact</a></li> --}}
                                     </ul>
                                 </div><!-- end of nav-collapse -->
                             </div>
                             <div class="col-lg-2 col-md-2 col-2">
                                 <div class="header-right">
-                                    <div class="mini-cart">
-                                        <button class="cart-toggle-btn"><img src="assets/images/add-to-cart.svg"
-                                                alt=""><span class="cart-count">2</span></button>
-                                        <div class="mini-cart-content">
-                                            <button class="mini-cart-close"><i class="ti-close"></i></button>
-                                            <div class="mini-cart-items">
-                                                <div class="mini-cart-item clearfix">
-                                                    <div class="mini-cart-item-image">
-                                                        <a href="shop.html"><img
-                                                                src="assets/images/shop/mini-cart/img-1.jpg" alt></a>
-                                                    </div>
-                                                    <div class="mini-cart-item-des">
-                                                        <a href="shop.html">Perfume</a>
-                                                        <span class="mini-cart-item-price">$20.15 x 1</span>
-                                                        <span class="mini-cart-item-quantity"><a href="#"><i
-                                                                    class="ti-close"></i></a></span>
-                                                    </div>
-                                                </div>
-                                                <div class="mini-cart-item clearfix">
-                                                    <div class="mini-cart-item-image">
-                                                        <a href="shop.html"><img
-                                                                src="assets/images/shop/mini-cart/img-2.jpg" alt></a>
-                                                    </div>
-                                                    <div class="mini-cart-item-des">
-                                                        <a href="shop.html">Muslim Hat</a>
-                                                        <span class="mini-cart-item-price">$13.25 x 2</span>
-                                                        <span class="mini-cart-item-quantity"><a href="#"><i
-                                                                    class="ti-close"></i></a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mini-cart-action clearfix">
-                                                <span class="mini-checkout-price">Subtotal: <span>$215.14</span></span>
-                                                <div class="mini-btn">
-                                                    <a href="checkout.html" class="view-cart-btn s1">Checkout</a>
-                                                    <a href="cart.html" class="view-cart-btn">View Cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="header-search-form-wrapper">
                                         <div class="cart-search-contact">
-                                            <button class="search-toggle-btn"><i class="fi flaticon-loupe"></i></button>
+                                            <button class="search-toggle-btn">{{ __('admin_local.Language') }}</button>
                                             <div class="header-search-form">
-                                                <form>
-                                                    <div>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Search here...">
-                                                        <button type="submit"><i class="fi flaticon-loupe"></i></button>
-                                                    </div>
-                                                </form>
+                                                <ul class="sub-menu" style="list-style: none;">
+                                                    @php
+                                                        $languages =  \App\Models\Admin\Language::where([['status', 1], ['delete', 0]])
+                                                            ->get();
+                                                    @endphp
+                                                    @foreach ($languages as $language)
+                                                        <li class="my-1 py-1" @if($language->lang==Cookie::get('front_language')) style="background: #DB9E30;text-align:center;" @else style="background: rgb(243, 243, 243);text-align:center;" @endif><a href="{{ route('changeFrontLang',$language->lang) }}" style="color: black;font-weight:600;font-size:16px;">{{ $language->name }}</a></li>
+                                                    @endforeach
+                                                    
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -307,6 +240,8 @@
     <script src="{{ asset('public/alfurqan/assets/js/jquery-plugin-collection.js')}}"></script>
     <!-- Custom script for this template -->
     <script src="{{ asset('public/alfurqan/assets/js/script.js')}}"></script>
+
+    @stack('js')
 </body>
 
 </html>
