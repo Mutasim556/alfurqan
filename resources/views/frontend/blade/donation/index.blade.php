@@ -12,6 +12,7 @@
             font-size: 1.2em;  
             background: red;
         }
+        
         .select2-container--default .select2-selection--single{
             background: transparent;
             width: 100%;
