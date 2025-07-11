@@ -56,5 +56,10 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'jummah-update','group_name'=>'Jummah']);
         // Permission::create(['guard_name'=>'admin','name'=>'jummah-delete','group_name'=>'Jummah']);
 
+        Permission::create(['guard_name'=>'admin','name'=>'service-index','group_name'=>'Service']);
+        Permission::create(['guard_name'=>'admin','name'=>'service-create','group_name'=>'Service']);
+        Permission::create(['guard_name'=>'admin','name'=>'service-update','group_name'=>'Service']);
+        Permission::create(['guard_name'=>'admin','name'=>'service-delete','group_name'=>'Service']);
+
     }
 }

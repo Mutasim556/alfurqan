@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
+use App\Http\Controllers\Admin\Service\ServiceController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -80,9 +81,17 @@ Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(functio
             Route::get('/update/status/{id}/{status}', 'updateStatus');
         });
         /** Jummah End */
+
+        /** Jummah Start */
+        Route::resource('service',ServiceController::class)->except('create','show');
+        Route::controller(ServiceController::class)->prefix('service')->group(function () {
+            Route::get('/update/status/{id}/{status}', 'updateStatus');
+        });
+        /** Jummah End */
+
     });
 
-    Route::get('/translate-string',function(){ 
+    Route::get('/translate-string',function(){
         $data = [];
         $langs = getLangs();
         foreach($langs as $lang){

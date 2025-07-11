@@ -33,6 +33,13 @@
             </a>
         </li>
     @endif
+    @if (hasPermission(['service-index', 'service-create', 'service-update', 'service-delete']))
+        <li class="sidebar-list">
+            <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.service.index') }}" aria-expanded="false"><i
+                    data-feather="file-text"></i><span>{{ __('admin_local.Services') }}</span>
+            </a>
+        </li>
+    @endif
     @if (hasPermission([
             'role-permission-index',
             'role-permission-create',
