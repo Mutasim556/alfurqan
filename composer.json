@@ -17,7 +17,7 @@
         "laravel/ui": "^4.6",
         "nwidart/laravel-modules": "^12",
         "spatie/laravel-permission": "^6.15",
-        "stichoza/google-translate-php": "^5.2",
+        "stichoza/google-translate-php": "^5.3",
         "stripe/stripe-php": "^17.3"
     },
     "require-dev": {

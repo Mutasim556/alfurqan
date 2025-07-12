@@ -33,11 +33,36 @@
             </a>
         </li>
     @endif
+
     @if (hasPermission(['service-index', 'service-create', 'service-update', 'service-delete']))
         <li class="sidebar-list">
             <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.service.index') }}" aria-expanded="false"><i
                     data-feather="file-text"></i><span>{{ __('admin_local.Services') }}</span>
             </a>
+        </li>
+    @endif
+    @if (hasPermission(['aboutus-index', 'aboutus-update']))
+        <li class="sidebar-list">
+            <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
+                <i data-feather="aperture"></i>
+                <span class="lan-3">{{ __('admin_local.Other Pages') }}</span>
+            </a>
+            <ul class="sidebar-submenu">
+                @if (hasPermission(['aboutus-index','aboutus-update']))
+                    <li>
+                        <a href="{{ route('admin.aboutUs') }}" class="sidebar-link">
+                            <span> {{ __('admin_local.About Us') }} </span>
+                        </a>
+                    </li>
+                @endif
+                @if (hasPermission(['contact-index','contact-update']))
+                    <li>
+                        <a href="{{ route('admin.contactUs') }}" class="sidebar-link">
+                            <span> {{ __('admin_local.Contact') }} </span>
+                        </a>
+                    </li>
+                @endif
+            </ul>
         </li>
     @endif
     @if (hasPermission([
@@ -78,13 +103,18 @@
             </ul>
         </li>
     @endif
-    @if (hasPermission(['maintenance-mode-index']))
+    @if (hasPermission(['maintenance-mode-index','homepage-slider-index']))
     <li class="sidebar-list">
         <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
             <i data-feather="settings"></i>
             <span class="lan-3">{{ __('admin_local.Settings') }}</span>
         </a>
         <ul class="sidebar-submenu">
+            @if (hasPermission(['homepage-slider-index']))
+                <li>
+                    <a href="{{ route('admin.settings.homepage.main_slider') }}">{{ __('admin_local.Main Slider') }}</a>
+                </li>
+            @endif
             @if (hasPermission(['maintenance-mode-index']))
             <li>
                 <a href="{{ route('admin.settings.server.maintenanceMode') }}" class="sidebar-link">

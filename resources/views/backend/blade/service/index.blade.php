@@ -82,18 +82,26 @@
                                     <div class="tab-pane fade show active" id="pills-defaultLang" role="tabpanel"
                                         aria-labelledby="pills-defaultLang-tab">
                                         <div class="form-group">
-                                            <label for="">{{ __('admin_local.Khutba Topic') }} (
+                                            <label for="">{{ __('admin_local.Service Name') }} (
                                                 {{ __('admin_local.Default') }} ) *</label>
-                                            <input type="text" class="form-control" name="service_khutba_topic"
-                                                id="service_khutba_topic">
-                                            <span class="text-danger err-mgs" id="service_khutba_topic_err"></span>
+                                            <input type="text" class="form-control" name="service_name"
+                                                id="service_name">
+                                            <span class="text-danger err-mgs" id="service_name_err"></span>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">{{ __('admin_local.Khutba Details') }} (
+                                            <label for="">{{ __('admin_local.Short Details') }} (
                                                 {{ __('admin_local.Default') }} ) *</label>
-                                            <textarea class="form-control ckeditorappend" name="service_khutba_details" id="service_khutba_details"></textarea>
-                                            <span class="text-danger err-mgs" id="service_khutba_details_err"></span>
+                                            <input type="text" class="form-control" name="service_short_details"
+                                                id="service_short_details">
+                                            <span class="text-danger err-mgs" id="service_short_details_err"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">{{ __('admin_local.Service Details') }} (
+                                                {{ __('admin_local.Default') }} ) *</label>
+                                            <textarea class="form-control ckeditorappend" name="service_details" id="service_details"></textarea>
+                                            <span class="text-danger err-mgs" id="service_details_err"></span>
                                         </div>
                                     </div>
                                     <script>
@@ -107,17 +115,23 @@
                                         <div class="tab-pane fade" id="pills-{{ $lang->name }}" role="tabpanel"
                                             aria-labelledby="pills-{{ $lang->name }}-tab">
                                             <div class="form-group">
-                                                <label for="">{{ __('admin_local.Khutba Topic') }} (
+                                                <label for="">{{ __('admin_local.Service Name') }} (
                                                     {{ $lang->name }} )</label>
                                                 <input type="text" class="form-control"
-                                                    name="service_khutba_topic_{{ $lang->lang }}"
-                                                    id="service_khutba_topic_{{ $lang->lang }}">
+                                                    name="service_name_{{ $lang->lang }}"
+                                                    id="service_name_{{ $lang->lang }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="">{{ __('admin_local.Khutba Details') }} (
+                                                <label for="">{{ __('admin_local.Short Details') }} (
                                                     {{ $lang->name }} ) </label>
-                                                <textarea class="form-control" name="service_khutba_details_{{ $lang->lang }}"
-                                                    id="service_khutba_details_{{ $lang->lang }}"></textarea>
+                                                <input type="text" class="form-control" name="service_short_details_{{ $lang->lang }}"
+                                                    id="service_short_details_{{ $lang->lang }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">{{ __('admin_local.Service Details') }} (
+                                                    {{ $lang->name }} ) </label>
+                                                <textarea class="form-control" name="service_details_{{ $lang->lang }}"
+                                                    id="service_details_{{ $lang->lang }}"></textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -127,50 +141,18 @@
                         <div class="row">
                             <div class="col-sm-12 col-xl-12">
                                 <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.service Date') }} *</label>
-                                        <input type="date" class="form-control" name="service_date"
-                                            id="service_date">
-                                        <span class="text-danger err-mgs" id="service_date_err"></span>
+                                    <div class="form-group col-md-6">
+                                        <label for="">{{ __('admin_local.Service Image') }} *</label>
+                                        <input type="file" class="form-control" name="service_image"
+                                            id="service_image">
+                                        <span class="text-danger err-mgs" id="service_image_err"></span>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Imam') }} *</label>
-                                        <input type="text" class="form-control" name="service_imam"
-                                            id="service_imam">
-                                        <span class="text-danger err-mgs" id="service_imam_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Image') }}</label>
-                                        <input type="file" class="form-control" name="image"
-                                            id="image">
-                                        <span class="text-danger err-mgs" id="image_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Azan Time') }} *</label>
-                                        <input type="time" class="form-control" name="service_azan_time"
-                                            id="service_azan_time">
-                                        <span class="text-danger err-mgs" id="service_azan_time_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Khutba Time') }} *</label>
-                                        <input type="time" class="form-control" name="service_khutba_time"
-                                            id="service_khutba_time">
-                                        <span class="text-danger err-mgs" id="service_khutba_time_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Prayer Time') }} *</label>
-                                        <input type="time" class="form-control" name="service_prayer_time"
-                                            id="service_prayer_time">
-                                        <span class="text-danger err-mgs" id="service_prayer_time_err"></span>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
 
                         <div class="row mt-4 mb-2">
                             <div class="form-group col-lg-12">
-
                                 <button class="btn btn-danger text-white font-weight-medium waves-effect text-start"
                                     data-bs-dismiss="modal" style="float: right" type="button">{{ __('admin_local.Close') }}</button>
                                 <button class="btn btn-primary mx-2" style="float: right"
@@ -218,33 +200,41 @@
                                             ['default', 1],
                                         ])->first();
                                     @endphp
-                                    <li class="nav-item"><a class="nav-link active" id="jpills-defaultLang-tab"
-                                            data-bs-toggle="pill" href="#jpills-defaultLang" role="tab"
-                                            aria-controls="jpills-defaultLang" aria-selected="true">{{ $lang->name }}
+                                    <li class="nav-item"><a class="nav-link active" id="epills-defaultLang-tab"
+                                            data-bs-toggle="pill" href="#epills-defaultLang" role="tab"
+                                            aria-controls="epills-defaultLang" aria-selected="true">{{ $lang->name }}
                                             ( {{ __('admin_local.Default') }} )</a></li>
                                     @foreach (getLangs() as $lang)
-                                        <li class="nav-item"><a class="nav-link" id="jpills-{{ $lang->name }}-tab"
-                                                data-bs-toggle="pill" href="#jpills-{{ $lang->name }}" role="tab"
-                                                aria-controls="jpills-{{ $lang->name }}"
+                                        <li class="nav-item"><a class="nav-link" id="epills-{{ $lang->name }}-tab"
+                                                data-bs-toggle="pill" href="#epills-{{ $lang->name }}" role="tab"
+                                                aria-controls="epills-{{ $lang->name }}"
                                                 aria-selected="true">{{ $lang->name }}</a></li>
                                     @endforeach
                                 </ul>
-                                <div class="tab-content mt-3" id="pills-successtabContent">
-                                    <div class="tab-pane fade show active" id="jpills-defaultLang" role="tabpanel"
-                                        aria-labelledby="jpills-defaultLang-tab">
+                                <div class="tab-content mt-3" id="epills-successtabContent">
+                                    <div class="tab-pane fade show active" id="epills-defaultLang" role="tabpanel"
+                                        aria-labelledby="epills-defaultLang-tab">
                                         <div class="form-group">
-                                            <label for="">{{ __('admin_local.Khutba Topic') }} (
+                                            <label for="">{{ __('admin_local.Service Name') }} (
                                                 {{ __('admin_local.Default') }} ) *</label>
-                                            <input type="text" class="form-control" name="service_khutba_topic"
-                                                id="service_khutba_topic">
-                                            <span class="text-danger err-mgs" id="service_khutba_topic_err"></span>
+                                            <input type="text" class="form-control" name="service_name"
+                                                id="service_name">
+                                            <span class="text-danger err-mgs" id="service_name_err"></span>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">{{ __('admin_local.Khutba Details') }} (
+                                            <label for="">{{ __('admin_local.Short Details') }} (
                                                 {{ __('admin_local.Default') }} ) *</label>
-                                            <textarea class="form-control ckeditorappend" name="service_khutba_details" id="service_khutba_details2"></textarea>
-                                            <span class="text-danger err-mgs" id="service_khutba_details_err"></span>
+                                            <input type="text" class="form-control" name="service_short_details"
+                                                id="service_short_details">
+                                            <span class="text-danger err-mgs" id="service_short_details_err"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">{{ __('admin_local.Service Details') }} (
+                                                {{ __('admin_local.Default') }} ) *</label>
+                                            <textarea class="form-control ckeditorappend" name="service_details" id="service_details2"></textarea>
+                                            <span class="text-danger err-mgs" id="service_details_err"></span>
                                         </div>
                                     </div>
                                     <script>
@@ -255,20 +245,26 @@
 
                                             langCode.push("{{ $lang->lang }}");
                                         </script>
-                                        <div class="tab-pane fade" id="jpills-{{ $lang->name }}" role="tabpanel"
-                                            aria-labelledby="jpills-{{ $lang->name }}-tab">
+                                        <div class="tab-pane fade" id="epills-{{ $lang->name }}" role="tabpanel"
+                                            aria-labelledby="epills-{{ $lang->name }}-tab">
                                             <div class="form-group">
-                                                <label for="">{{ __('admin_local.Khutba Topic') }} (
+                                                <label for="">{{ __('admin_local.Service Name') }} (
                                                     {{ $lang->name }} )</label>
                                                 <input type="text" class="form-control"
-                                                    name="service_khutba_topic_{{ $lang->lang }}"
-                                                    id="service_khutba_topic_{{ $lang->lang }}">
+                                                    name="service_name_{{ $lang->lang }}"
+                                                    id="service_name_{{ $lang->lang }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="">{{ __('admin_local.Khutba Details') }} (
+                                                <label for="">{{ __('admin_local.Short Details') }} (
                                                     {{ $lang->name }} ) </label>
-                                                <textarea class="form-control" name="service_khutba_details_{{ $lang->lang }}"
-                                                    id="service_khutba_details2_{{ $lang->lang }}"></textarea>
+                                                <input type="text" class="form-control" name="service_short_details_{{ $lang->lang }}"
+                                                    id="service_short_details_{{ $lang->lang }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">{{ __('admin_local.Service Details') }} (
+                                                    {{ $lang->name }} ) </label>
+                                                <textarea class="form-control" name="service_details_{{ $lang->lang }}"
+                                                    id="service_details2_{{ $lang->lang }}"></textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -278,43 +274,12 @@
                         <div class="row">
                             <div class="col-sm-12 col-xl-12">
                                 <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.service Date') }} *</label>
-                                        <input type="date" class="form-control" name="service_date"
-                                            id="service_date">
-                                        <span class="text-danger err-mgs" id="service_date_err"></span>
+                                    <div class="form-group col-md-6">
+                                        <label for="">{{ __('admin_local.Service Image') }} *</label>
+                                        <input type="file" class="form-control" name="service_image"
+                                            id="service_image">
+                                        <span class="text-danger err-mgs" id="service_image_err"></span>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Imam') }} *</label>
-                                        <input type="text" class="form-control" name="service_imam"
-                                            id="service_imam">
-                                        <span class="text-danger err-mgs" id="service_imam_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Image') }}</label>
-                                        <input type="file" class="form-control" name="image"
-                                            id="image">
-                                        <span class="text-danger err-mgs" id="image_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Azan Time') }} *</label>
-                                        <input type="time" class="form-control" name="service_azan_time"
-                                            id="service_azan_time">
-                                        <span class="text-danger err-mgs" id="service_azan_time_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Khutba Time') }} *</label>
-                                        <input type="time" class="form-control" name="service_khutba_time"
-                                            id="service_khutba_time">
-                                        <span class="text-danger err-mgs" id="service_khutba_time_err"></span>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="">{{ __('admin_local.Prayer Time') }} *</label>
-                                        <input type="time" class="form-control" name="service_prayer_time"
-                                            id="service_prayer_time">
-                                        <span class="text-danger err-mgs" id="service_prayer_time_err"></span>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -364,13 +329,10 @@
                             <table id="basic-1" class="display table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('admin_local.service Date') }}</th>
-                                        <th>{{ __('admin_local.service Azan Time') }}</th>
-                                        <th>{{ __('admin_local.Khutba Time') }}</th>
-                                        <th>{{ __('admin_local.Prayer Time') }}</th>
-                                        <th>{{ __('admin_local.Imam') }}</th>
-                                        <th>{{ __('admin_local.Khutba Topic') }}</th>
-                                        <th>{{ __('admin_local.Khutba Details') }}</th>
+                                        <th>{{ __('admin_local.Service Name') }}</th>
+                                        <th>{{ __('admin_local.Service Short Details') }}</th>
+                                        <th>{{ __('admin_local.Details') }}</th>
+                                        <th>{{ __('admin_local.Image') }}</th>
                                         <th>{{ __('admin_local.Status') }}</th>
                                         <th>{{ __('admin_local.Action') }}</th>
                                     </tr>
@@ -379,21 +341,10 @@
                                     @foreach ($services as $service)
                                         <tr id="trid-{{ $service->id }}"
                                             data-id="{{ $service->id }}">
-                                            <td>{{ $service->service_date }}</td>
-                                            <td>{{ date('h:i A',strtotime($service->service_azan_time)) }}</td>
-                                            <td>{{ date('h:i A',strtotime($service->service_khutba_time)) }}</td>
-                                            <td>{{ date('h:i A',strtotime($service->service_prayer_time)) }}</td>
-                                            <td>{{ $service->service_imam }}</td>
-                                            <td>{{ $service->service_khutba_topic }}</td>
-                                            <td>{!! $service->service_khutba_details !!}</td>
-                                            {{-- <td>
-                                                @if ($service->service_image)
-                                                    <img src="{{ asset($service->service_image) }}"
-                                                        alt="" style="height:">
-                                                @else
-                                                    {{ __('admin_local.No file') }}
-                                                @endif
-                                            </td> --}}
+                                            <td>{{ $service->service_name }}</td>
+                                            <td>{{ $service->service_short_details }}</td>
+                                            <td>{!! $service->service_details !!}</td>
+                                            <td><img src="{{ asset($service->service_image) }}" alt=""></td>
 
                                             <td class="text-center">
                                                 @if (hasPermission(['service-update']))
@@ -456,7 +407,7 @@
     <script src="{{ asset(env('ASSET_DIRECTORY','public') . '/' . 'admin/assets/js/editor/ckeditor/ckeditor.custom.js') }}"></script>
     @foreach (getLangs() as $lang)
         <script>
-            CKEDITOR.replace('service_khutba_details_' + '{{ $lang->lang }}', {
+            CKEDITOR.replace('service_details_' + '{{ $lang->lang }}', {
                 on: {
                     contentDom: function(evt) {
                         // Allow custom context menu only with table elemnts.
@@ -472,7 +423,7 @@
             });
         </script>
         <script>
-            CKEDITOR.replace('service_khutba_details2_' + '{{ $lang->lang }}', {
+            CKEDITOR.replace('service_details2_' + '{{ $lang->lang }}', {
                 on: {
                     contentDom: function(evt) {
                         // Allow custom context menu only with table elemnts.
@@ -489,7 +440,7 @@
         </script>
     @endforeach
     <script>
-        CKEDITOR.replace('service_khutba_details', {
+        CKEDITOR.replace('service_details', {
             on: {
                 contentDom: function(evt) {
                     // Allow custom context menu only with table elemnts.
@@ -503,7 +454,7 @@
                 }
             }
         });
-        CKEDITOR.replace('service_khutba_details2', {
+        CKEDITOR.replace('service_details2', {
             on: {
                 contentDom: function(evt) {
                     // Allow custom context menu only with table elemnts.

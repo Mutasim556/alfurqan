@@ -7,8 +7,11 @@ use App\Http\Controllers\Admin\Jummah\JummahController;
 use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
+use App\Http\Controllers\Admin\Others\AboutUsController;
+use App\Http\Controllers\Admin\Others\ContactUsController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Service\ServiceController;
+use App\Http\Controllers\Admin\Settings\HomepageSettingController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -82,12 +85,38 @@ Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(functio
         });
         /** Jummah End */
 
-        /** Jummah Start */
+        /** Service Start */
         Route::resource('service',ServiceController::class)->except('create','show');
         Route::controller(ServiceController::class)->prefix('service')->group(function () {
             Route::get('/update/status/{id}/{status}', 'updateStatus');
         });
-        /** Jummah End */
+        /** Service End */
+
+        /** About Us Start */
+        Route::controller(AboutUsController::class)->prefix('about-us')->group(function () {
+            Route::get('/update/about-us', 'aboutUs')->name('aboutUs');
+            Route::post('/update/about-us', 'updateAboutUs')->name('updateAboutUs');
+        });
+        /** About Us End */
+
+        /** Contact Start */
+        Route::controller(ContactUsController::class)->prefix('contact-us')->group(function () {
+            Route::get('/update/contact-us', 'contactUs')->name('contactUs');
+            Route::post('/update/contact-us', 'updateContactUs')->name('updateContactUs');
+        });
+        /** Contact End */
+
+        Route::prefix('settings')->name('settings.')->group(function(){
+            Route::controller(HomepageSettingController::class)->prefix('homepage')->name('homepage.')->group(function(){
+                Route::get('/main-slider','mainSlider')->name('main_slider');
+                Route::post('/main-slider','mainSliderStore')->name('main_slider_store');
+                Route::get('/main-slider-delete/{id}','mainSliderDelete')->name('main_slider_delete');
+                Route::get('/slider/update/status/{id}/{status}','updateSliderStatus');
+                Route::get('/slider/{id}/edit','edit');
+                Route::put('/slider/{id}','update');
+                Route::delete('/slider/{id}','destroySlider');
+            });
+        });
 
     });
 
