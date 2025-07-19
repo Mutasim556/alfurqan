@@ -66,16 +66,12 @@ class JummahController extends Controller
         $dir = getDirectoryLink('jummahs/jummah-images');
         $makeDir = createDirectory($dir);
         if($data->image) {
-            $images = $data->image;
-            $image_names = [];
-            foreach ($images as $key => $image) {
-                $imageName = 'jummah'.$key.time().'.'.$image->getClientOriginalExtension();
-                $manager = new ImageManager(new Driver());
-                $imageName  =  $dir . '/' . $imageName;
-                $manager->read($image)->resize(300, 300)->save($imageName);
-                $image_names[] = $imageName;
-            }
-            $jummah_images = implode(",", $image_names);
+            $image = $data->image;
+            $imageName = 'jummah'.time().'.'.$image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->save($imageName);
+            $jummah_images = $imageName;
         }else {
             $jummah_images = null;
         }
@@ -178,16 +174,12 @@ class JummahController extends Controller
         $dir = getDirectoryLink('jummahs/jummah-images');
         $makeDir = createDirectory($dir);
         if($data->image) {
-            $images = $data->image;
-            $image_names = [];
-            foreach ($images as $key => $image) {
-                $imageName = 'jummah'.$key.time().'.'.$image->getClientOriginalExtension();
-                $manager = new ImageManager(new Driver());
-                $imageName  =  $dir . '/' . $imageName;
-                $manager->read($image)->resize(300, 300)->save($imageName);
-                $image_names[] = $imageName;
-            }
-            $jummah_images = implode(",", $image_names);
+            $image = $data->image;
+            $imageName = 'jummah'.time().'.'.$image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->save($imageName);
+            $jummah_images = $imageName;
         }else {
             $jummah_images = $jummah->image;
         }

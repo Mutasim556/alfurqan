@@ -110,11 +110,19 @@ Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(functio
             Route::controller(HomepageSettingController::class)->prefix('homepage')->name('homepage.')->group(function(){
                 Route::get('/main-slider','mainSlider')->name('main_slider');
                 Route::post('/main-slider','mainSliderStore')->name('main_slider_store');
+                Route::post('/slider-text','updateSliderText')->name('updateSliderText');
                 Route::get('/main-slider-delete/{id}','mainSliderDelete')->name('main_slider_delete');
                 Route::get('/slider/update/status/{id}/{status}','updateSliderStatus');
                 Route::get('/slider/{id}/edit','edit');
                 Route::put('/slider/{id}','update');
                 Route::delete('/slider/{id}','destroySlider');
+
+                Route::get('/video-gallery','videoGallery')->name('videoGallery');
+                Route::post('/video-gallery','videoGalleryStore')->name('videoGalleryStore');
+                Route::get('/gallery/update/status/{id}/{status}','updateGalleryStatus');
+                Route::get('/gallery/{id}/edit','edit');
+                Route::put('/gallery/{id}','update');
+                Route::delete('/gallery/{id}','destroyGallery');
             });
         });
 

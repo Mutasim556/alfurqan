@@ -3,7 +3,7 @@
 //     alert('assasas');
 // })
 $(document).on('submit','#add_jummah_form',function(e){
-    e.prjummahDefault();
+    e.preventDefault();
     $('button[type=submit]', this).html(submit_btn_after+'....');
     $('button[type=submit]', this).addClass('disabled');
     var formData = new FormData(this);

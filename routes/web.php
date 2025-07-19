@@ -85,6 +85,7 @@ Route::middleware('frontLang')->group(function(){
         Route::get('about-us','aboutUs')->name('aboutUs');
         Route::get('contact','contact')->name('contact');
         Route::get('services','services')->name('services');
+        Route::get('services/{slug}','serviceDetails')->name('serviceDetails');
         Route::get('events','events')->name('events');
         Route::get('jummah','jummah')->name('jummah');
     });

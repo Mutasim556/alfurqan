@@ -4,13 +4,16 @@
     {{ __('admin_local.Contact') }}
 @endpush
 @section('content')
+@php
+    $contact = \App\Models\Admin\Contact::first();
+@endphp
 <section class="wpo-contact-pg-section section-padding" style="url(../images/slider/bg.png);">
     <div class="container">
         <div class="row">
             <div class="col col-lg-12">
                 <div class="office-info">
                     <div class="row">
-                        <div class="col col-xl-2 col-lg-2 col-md-2 col-12 mx-auto"></div>
+                        @if ($contact->address!=NULL)
                         <div class="col col-xl-4 col-lg-6 col-md-6 col-12">
                             <div class="office-info-item">
                                 <div class="office-info-icon">
@@ -20,10 +23,12 @@
                                 </div>
                                 <div class="office-info-text">
                                     <h2>{{ __('admin_local.Address') }}</h2>
-                                    <p>140 NY-32, Central Valley, NY 10917</p>
+                                    <p>{{ $contact->address }}</p>
                                 </div>
                             </div>
                         </div>
+                        @endif
+                        @if ($contact->email!=NULL)
                         <div class="col col-xl-4 col-lg-6 col-md-6 col-12">
                             <div class="office-info-item">
                                 <div class="office-info-icon">
@@ -33,11 +38,26 @@
                                 </div>
                                 <div class="office-info-text">
                                     <h2>{{ __('admin_local.Email') }}</h2>
-                                    <p>contact@alfurqancv.org</p>
+                                    <p>{{ $contact->email }}g</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-xl-2 col-lg-2 col-md-2 col-12 mx-auto"></div>
+                        @endif
+                        @if ($contact->phone!=NULL)
+                        <div class="col col-xl-4 col-lg-6 col-md-6 col-12">
+                            <div class="office-info-item">
+                                <div class="office-info-icon">
+                                    <div class="icon">
+                                        <i class="fi flaticon-phone-call"></i>
+                                    </div>
+                                </div>
+                                <div class="office-info-text">
+                                    <h2>{{ __('admin_local.Phone') }}</h2>
+                                    <p>{{ $contact->phone }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="wpo-contact-title">
@@ -46,7 +66,7 @@
                 </div>
                 <div class="wpo-contact-form-area">
                     <div class="row">
-                        
+
                         <div class="col col-xl-5 col-lg-5 col-md-5 col-12">
                             <form method="post" action="mail-contact.php" class="contact-validation-active" id="contact-form-main">
                                 <div>
@@ -90,14 +110,12 @@
                             <section class="wpo-contact-map-section">
                                 <h2 class="hidden">Contact map</h2>
                                 <div class="wpo-contact-map">
-                                    <iframe
-                                        src="https://maps.google.com/maps?q=AL%20FURQAN%20ISLAMIC%20INSTITUTE%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                        allowfullscreen></iframe>
+                                    <iframe src="{{ $contact->location }}" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </section>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

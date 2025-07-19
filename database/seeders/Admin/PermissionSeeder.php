@@ -67,5 +67,10 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'contact-index','group_name'=>'Contact']);
         // Permission::create(['guard_name'=>'admin','name'=>'contact-update','group_name'=>'Contact']);
 
+        // Permission::create(['guard_name'=>'admin','name'=>'video-gallery-index','group_name'=>'Video Gallery']);
+        // Permission::create(['guard_name'=>'admin','name'=>'video-gallery-create','group_name'=>'Video Gallery']);
+        // Permission::create(['guard_name'=>'admin','name'=>'video-gallery-update','group_name'=>'Video Gallery']);
+        // Permission::create(['guard_name'=>'admin','name'=>'video-gallery-delete','group_name'=>'Video Gallery']);
+
     }
 }

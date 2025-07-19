@@ -103,7 +103,7 @@
             </ul>
         </li>
     @endif
-    @if (hasPermission(['maintenance-mode-index','homepage-slider-index']))
+    @if (hasPermission(['maintenance-mode-index','homepage-slider-index','video-gallery-index']))
     <li class="sidebar-list">
         <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
             <i data-feather="settings"></i>
@@ -113,6 +113,11 @@
             @if (hasPermission(['homepage-slider-index']))
                 <li>
                     <a href="{{ route('admin.settings.homepage.main_slider') }}">{{ __('admin_local.Main Slider') }}</a>
+                </li>
+            @endif
+            @if (hasPermission(['video-gallery-index']))
+                <li>
+                    <a href="{{ route('admin.settings.homepage.videoGallery') }}">{{ __('admin_local.Video Gallery') }}</a>
                 </li>
             @endif
             @if (hasPermission(['maintenance-mode-index']))

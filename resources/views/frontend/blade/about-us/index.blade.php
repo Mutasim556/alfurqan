@@ -4,7 +4,9 @@
     {{ __('admin_local.About us') }}
 @endpush
 @section('content')
-
+@php
+    $aboutUs = App\Models\Admin\AboutUs::first();
+@endphp
     <section class="about-section" style="margin-bottom: 150px;">
         <div class="container">
             <div class="wrap">
@@ -21,21 +23,58 @@
                         <div class="content">
                             <div class="section-title">
                                 <h2>{{ __('admin_local.About Us') }}</h2>
-                                <h3>{{ __('admin_local.Welcome to Al-Furqan Islamic Iinstitute') }}</h3>
-                                <p>{{ __('admin_local.Al Furqan Islamic Institute is embarking on a journey to establish a center of faith, learning, and community service—a future masjid and educational hub dedicated to fostering Islamic knowledge and strengthening our Muslim community') }}</p>
+                                <h3>{{ $aboutUs->about_us_title }}</h3>
+                                <p>{{ $aboutUs->short_details }}</p>
                             </div>
                             <div class="about-bottom">
-
+                                @if ($aboutUs->email!=NULL)
                                 <div class="call">
                                     <div class="icon">
                                         <img src="{{ asset('public/alfurqan/assets/images/event/email.svg') }}" height="22px;" alt="icon">
                                     </div>
                                     <div class="text">
                                         <a href="#" style="font-family: 'Times New Roman', Times, serif">
-                                            contact@alfurqancv.org
+                                            {{ $aboutUs->email }}
                                         </a>
                                     </div>
                                 </div>
+                                @endif
+                                @if ($aboutUs->phone!=NULL)
+                                <div class="call">
+                                    <div class="icon">
+                                        <img src="{{ asset('public/alfurqan/assets/images/event/phone2.svg') }}" height="22px;" alt="icon">
+                                    </div>
+                                    <div class="text">
+                                        <a href="#" style="font-family: 'Times New Roman', Times, serif">
+                                            {{ $aboutUs->phone }}
+                                        </a>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="about-bottom mt-5">
+                                @if ($aboutUs->address!=NULL)
+                                <div class="call">
+                                    <div class="icon">
+                                        <img src="{{ asset('public/alfurqan/assets/images/event/location.png') }}" height="22px;" alt="icon">
+                                    </div>
+                                    <div class="text">
+                                        <a href="#" style="font-family: 'Times New Roman', Times, serif">
+                                            {{ $aboutUs->address }}
+                                        </a>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="about-bottom mt-5">
+                                @if ($aboutUs->details!=NULL)
+                                <h5><u>{{ __('admin_local.Details About Alfurqan') }}</u></h5>
+                                @endif
+                            </div>
+                            <div class="about-bottom ">
+                                @if ($aboutUs->details!=NULL)
+                                <p>{!! $aboutUs->details !!}</p>
+                                @endif
                             </div>
                         </div>
                     </div>

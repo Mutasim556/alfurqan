@@ -24,23 +24,6 @@
     </style>
 @endpush
 @section('content')
-    <div class="container-fluid">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>{{ __('admin_local.Slider Image List') }}</h3>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="javascript:void(0)">{{ __('admin_local.Settings ') }}</a>
-                        </li>
-                        <li class="breadcrumb-item active">{{ __('admin_local.Slider Image List') }}</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {{-- Add slider Modal Start --}}
 
@@ -61,7 +44,7 @@
                     <form method="POST" action="" id="add_slider_form" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-12 mt-2">
+                            {{-- <div class="col-lg-12 mt-2">
                                 <label for="slider_name"><strong>{{ __('admin_local.Slider Title') }} *</strong></label>
                                 <input type="text" class="form-control" name="slider_title" id="slider_title">
                                 <span class="text-danger err-mgs"></span>
@@ -80,9 +63,9 @@
                                 <label for="slider_name"><strong>{{ __('admin_local.Slider Button Text') }} *</strong></label>
                                 <input type="text" class="form-control" name="slider_button_text" id="slider_button_text">
                                 <span class="text-danger err-mgs"></span>
-                            </div>
+                            </div> --}}
                             <div class="col-lg-12 mt-2">
-                                <label for="slider_image"><strong>{{ __('admin_local.Slider Image') }} ( 2376px x 807px )
+                                <label for="slider_image"><strong>{{ __('admin_local.Slider Image') }} ( 1980px x 900px )
                                     </strong></label>
                                 <input type="file" class="form-control" name="slider_image" id="slider_image" onchange="document.getElementById('preview_image').src = window.URL.createObjectURL(this.files[0])">
                                 <span class="text-danger err-mgs"></span>
@@ -92,7 +75,7 @@
                                     </strong></label>
                                 <img src="" id="preview_image" style="height: 100%;width:100%" alt="preview image">
                             </div>
-                             <div class="col-lg-12 mt-2">
+                             {{-- <div class="col-lg-12 mt-2">
                                 <label for="slider_image"><strong>{{ __('admin_local.Slider Image 2') }} ( 660px x 660px )
                                     </strong></label>
                                 <input type="file" class="form-control" name="slider_image2" id="slider_image2" onchange="document.getElementById('preview_image3').src = window.URL.createObjectURL(this.files[0])">
@@ -102,7 +85,7 @@
                                 <label for="parent_slider_image"><strong>{{ __('admin_local.Preview Image') }}
                                     </strong></label>
                                 <img src="" id="preview_image3" style="height: 100%;width:100%" alt="preview image">
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row mt-4 mb-2">
                             <div class="form-group col-lg-12">
@@ -144,7 +127,7 @@
                         @method('PUT')
                         <input type="hidden" id="slider_id" name="slider_id" value="">
                         <div class="row">
-                            <div class="col-lg-12 mt-2">
+                            {{-- <div class="col-lg-12 mt-2">
                                 <label for="slider_name"><strong>{{ __('admin_local.Slider Title') }} *</strong></label>
                                 <input type="text" class="form-control" name="slider_title" id="slider_title">
                                 <span class="text-danger err-mgs"></span>
@@ -163,9 +146,9 @@
                                 <label for="slider_name"><strong>{{ __('admin_local.Slider Button Text') }} *</strong></label>
                                 <input type="text" class="form-control" name="slider_button_text" id="slider_button_text">
                                 <span class="text-danger err-mgs"></span>
-                            </div>
+                            </div> --}}
                             <div class="col-lg-12 mt-2">
-                                <label for="slider_image"><strong>{{ __('admin_local.Slider Image') }} ( 1920px x 800px )
+                                <label for="slider_image"><strong>{{ __('admin_local.Slider Image') }} ( 1980px x 900px )
                                     </strong></label>
                                 <input type="file" class="form-control" name="slider_image" id="slider_image" onchange="document.getElementById('preview_image2').src = window.URL.createObjectURL(this.files[0])">
                                 <span class="text-danger err-mgs"></span>
@@ -176,7 +159,7 @@
                                 <img src="" id="preview_image2" style="height: 100%;width:100%" alt="preview image">
                             </div>
 
-                            <div class="col-lg-12 mt-2">
+                            {{-- <div class="col-lg-12 mt-2">
                                 <label for="slider_image"><strong>{{ __('admin_local.Slider Image 2') }} ( 660px x 660px )
                                     </strong></label>
                                 <input type="file" class="form-control" name="slider_image2" id="slider_image2" onchange="document.getElementById('preview_image4').src = window.URL.createObjectURL(this.files[0])">
@@ -186,7 +169,7 @@
                                 <label for="parent_slider_image"><strong>{{ __('admin_local.Preview Image') }}
                                     </strong></label>
                                 <img src="" id="preview_image4" style="height: 100%;width:100%" alt="preview image">
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="row mt-4 mb-2">
@@ -221,97 +204,134 @@
                     </div>
 
                     <div class="card-body">
-                        @if (hasPermission(['homepage-slider-store']))
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <button class="btn btn-success" type="btn" data-bs-toggle="modal"
-                                        data-bs-target="#add-slider-modal">+
-                                        {{ __('admin_local.Add Slider Image') }}</button>
-                                </div>
-                            </div>
-                        @endif
-                        <div class="table-responsive theme-scrollbar">
-                            <table id="basic-1" class="display table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>{{ __('admin_local.Image') }}</th>
-                                        <th>{{ __('admin_local.Image 2') }}</th>
-                                        <th>{{ __('admin_local.Title') }}</th>
-                                        <th>{{ __('admin_local.Details') }}</th>
-                                        <th>{{ __('admin_local.Button Text') }}</th>
-                                        <th>{{ __('admin_local.Status') }}</th>
-                                        <th>{{ __('admin_local.Action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($sliders as $slider)
-                                        <tr id="trid-{{ $slider->id }}" data-id="{{ $slider->id }}">
-                                            <td>
-                                                @if ($slider->slider_image)
-                                                    <img height="40px" src="{{ asset(env('ASSET_DIRECTORY','public').'/'.$slider->slider_image) }}" alt=""
-                                                        style="height:">
-                                                @else
-                                                    {{ __('admin_local.No File') }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($slider->slider_image2)
-                                                    <img height="40px" src="{{ asset(env('ASSET_DIRECTORY','public').'/'.$slider->slider_image2) }}" alt=""
-                                                        style="height:">
-                                                @else
-                                                    {{ __('admin_local.No File') }}
-                                                @endif
-                                            </td>
-                                            <td>{{ $slider->slider_title }}</td>
-                                            <td>{{ $slider->slider_short_description != '' ? $slider->slider_short_description : 'N/A' }}</td>
-                                            <td>
-                                                {{ $slider->slider_button_text != '' ? $slider->slider_button_text : 'N/A' }}
-                                            </td>
-                                            <td class="text-center">
-                                                @if (hasPermission(['homepage-slider-update']))
-                                                    <span
-                                                        class="mx-2">{{ $slider->status == 0 ? 'Inactive' : 'Active' }}</span><input
-                                                        data-status="{{ $slider->status == 0 ? 1 : 0 }}"
-                                                        id="status_change" type="checkbox" data-toggle="switchery"
-                                                        data-color="green" data-secondary-color="red" data-size="small"
-                                                        {{ $slider->status == 1 ? 'checked' : '' }} />
-                                                @else
-                                                    <span
-                                                        class="badge badge-danger">{{ __('admin_local.No Permission') }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if (hasPermission(['homepage-slider-update', 'homepage-slider-delete']))
-                                                    <div class="dropdown">
-                                                        <button
-                                                            class="btn btn-info text-white px-2 py-1 dropbtn">{{ __('admin_local.Action') }}
-                                                            <i class="fa fa-angle-down"></i></button>
-                                                        <div class="dropdown-content">
+                        <ul class="nav nav-tabs nav-primary" id="pills-warningtab" role="tablist">
+                             <li class="nav-item"><a class="nav-link active" id="pills-payments-tab" data-bs-toggle="pill"
+                                     href="#pills-payments" role="tab" aria-controls="pills-payments"
+                                     aria-selected="true"><i class="icofont icofont-notepad"
+                                         style="font-size:22px"></i>{{__('admin_local.Texts')}}</a></li>
+                             <li class="nav-item"><a class="nav-link" id="pills-makepayment-tab" data-bs-toggle="pill"
+                                     href="#pills-makepayment" role="tab" aria-controls="pills-makepayment"
+                                     aria-selected="false"><i class="icofont icofont-pay" style="font-size:22px"></i>{{__('admin_local.Images')}}</a></li>
+                         </ul>
+                         <div class="tab-content px-0 " id="pills-warningtabContent">
+                             <div class="tab-pane fade show active" id="pills-payments" role="tabpanel"
+                                 aria-labelledby="pills-payments-tab">
+                                 <form action="{{ route('admin.settings.homepage.updateSliderText') }}" class="my-3" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin_local.Title') }}</label>
+                                        <input type="text" class="form-control" name="title" value="{{ $sliderText->title }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin_local.Short Details') }}</label>
+                                        <input type="text" class="form-control" name="short_details" value="{{ $sliderText->short_details }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">{{ __('admin_local.Button Text') }}</label>
+                                        <input type="text" class="form-control" name="button_text" value="{{ $sliderText->button_text }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-success" value="{{ __('admin_local.Update') }}">
+                                    </div>
+                                 </form>
+                             </div>
+                             <div class="tab-pane fade py-4" id="pills-makepayment" role="tabpanel"
+                                 aria-labelledby="pills-makepayment-tab">
+                                    <div class="table-responsive theme-scrollbar">
+                                        @if (hasPermission(['homepage-slider-store']))
+                                            <div class="row mb-3">
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-success" type="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#add-slider-modal">+
+                                                        {{ __('admin_local.Add Slider Image') }}</button>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <table id="basic-1" class="display table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('admin_local.Image') }}</th>
+                                                    {{-- <th>{{ __('admin_local.Image 2') }}</th>
+                                                    <th>{{ __('admin_local.Title') }}</th>
+                                                    <th>{{ __('admin_local.Details') }}</th>
+                                                    <th>{{ __('admin_local.Button Text') }}</th> --}}
+                                                    <th>{{ __('admin_local.Status') }}</th>
+                                                    <th>{{ __('admin_local.Action') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($sliders as $slider)
+                                                    <tr id="trid-{{ $slider->id }}" data-id="{{ $slider->id }}">
+                                                        <td>
+                                                            @if ($slider->slider_image)
+                                                                <img height="40px" src="{{ \URL::to('/').'/'.$slider->slider_image }}" alt=""
+                                                                    style="height:">
+                                                            @else
+                                                                {{ __('admin_local.No File') }}
+                                                            @endif
+                                                        </td>
+                                                        {{-- <td>
+                                                            @if ($slider->slider_image2)
+                                                                <img height="40px" src="{{ asset(env('ASSET_DIRECTORY','public').'/'.$slider->slider_image2) }}" alt=""
+                                                                    style="height:">
+                                                            @else
+                                                                {{ __('admin_local.No File') }}
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $slider->slider_title }}</td>
+                                                        <td>{{ $slider->slider_short_description != '' ? $slider->slider_short_description : 'N/A' }}</td>
+                                                        <td>
+                                                            {{ $slider->slider_button_text != '' ? $slider->slider_button_text : 'N/A' }}
+                                                        </td> --}}
+                                                        <td class="text-center">
                                                             @if (hasPermission(['homepage-slider-update']))
-                                                                <a data-bs-toggle="modal" style="cursor: pointer;"
-                                                                    data-bs-target="#edit-slider-modal"
-                                                                    class="text-primary" id="edit_button"><i
-                                                                        class=" fa fa-edit mx-1"></i>{{ __('admin_local.Edit') }}</a>
+                                                                <span
+                                                                    class="mx-2">{{ $slider->status == 0 ? 'Inactive' : 'Active' }}</span><input
+                                                                    data-status="{{ $slider->status == 0 ? 1 : 0 }}"
+                                                                    id="status_change" type="checkbox" data-toggle="switchery"
+                                                                    data-color="green" data-secondary-color="red" data-size="small"
+                                                                    {{ $slider->status == 1 ? 'checked' : '' }} />
+                                                            @else
+                                                                <span
+                                                                    class="badge badge-danger">{{ __('admin_local.No Permission') }}</span>
                                                             @endif
-                                                            @if (hasPermission(['homepage-slider-delete']))
-                                                                <a class="text-danger" id="delete_button"
-                                                                    style="cursor: pointer;"><i
-                                                                        class="fa fa-trash mx-1"></i>
-                                                                    {{ __('admin_local.Delete') }}</a>
+                                                        </td>
+                                                        <td>
+                                                            @if (hasPermission(['homepage-slider-update', 'homepage-slider-delete']))
+                                                                <div class="dropdown">
+                                                                    <button
+                                                                        class="btn btn-info text-white px-2 py-1 dropbtn">{{ __('admin_local.Action') }}
+                                                                        <i class="fa fa-angle-down"></i></button>
+                                                                    <div class="dropdown-content">
+                                                                        @if (hasPermission(['homepage-slider-update']))
+                                                                            <a data-bs-toggle="modal" style="cursor: pointer;"
+                                                                                data-bs-target="#edit-slider-modal"
+                                                                                class="text-primary" id="edit_button"><i
+                                                                                    class=" fa fa-edit mx-1"></i>{{ __('admin_local.Edit') }}</a>
+                                                                        @endif
+                                                                        @if (hasPermission(['homepage-slider-delete']))
+                                                                            <a class="text-danger" id="delete_button"
+                                                                                style="cursor: pointer;"><i
+                                                                                    class="fa fa-trash mx-1"></i>
+                                                                                {{ __('admin_local.Delete') }}</a>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                <span
+                                                                    class="badge badge-danger">{{ __('admin_local.No Permission') }}</span>
                                                             @endif
-                                                        </div>
-                                                    </div>
-                                                @else
-                                                    <span
-                                                        class="badge badge-danger">{{ __('admin_local.No Permission') }}</span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            @csrf
-                        </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                </div>
+                             </div>
+
+                         </div>
+
+
                     </div>
                 </div>
             </div>

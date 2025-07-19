@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-lg-2 col-md-6 col-5">
                                 <div class="navbar-header">
-                                    <a class="navbar-brand" href="index.html"><img style="height: 100px;width:400px" src="{{ asset('public/alfurqan/assets/images/logo.webp') }}"
+                                    <a class="navbar-brand" href="{{ url('/') }}"><img style="height: 100px;width:400px" src="{{ asset('public/alfurqan/assets/images/logo.webp') }}"
                                             alt="logo"></a>
                                 </div>
                             </div>
@@ -121,15 +121,15 @@
                                                     @foreach ($languages as $language)
                                                         <li class="my-1 py-1" @if($language->lang==Cookie::get('front_language')) style="background: #DB9E30;text-align:center;" @else style="background: rgb(243, 243, 243);text-align:center;" @endif><a href="{{ route('changeFrontLang',$language->lang) }}" style="color: black;font-weight:600;font-size:16px;">{{ $language->name }}</a></li>
                                                     @endforeach
-                                                    
+
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                     </div><!-- end of container -->
                 </nav>
@@ -139,7 +139,7 @@
         <div style="padding-top:70px;">
             @yield('content')
         </div>
-        
+
 
         <!-- start of footer-section -->
         <footer class="site-footer">
@@ -153,14 +153,20 @@
                                     {{-- <img src="{{ asset('public/alfurqan/assets/images/logo.webp') }}" alt="blog"> --}}
                                     {{-- <img src="{{ asset('public/alfurqan/assets/images/logo-2.svg') }}" alt="blog"> --}}
                                 </div>
-                                <p>{{ __('admin_local.Address') }} : 140 NY-32, Central Valley, NY 10917</p>
-                                <p>{{ __('admin_local.Email') }} : contact@alfurqancv.org</p>
+                                @php
+                                    $contact = \App\Models\Admin\Contact::first();
+                                @endphp
+                                @if($contact->address)<p>{{ __('admin_local.Address') }} : {{ $contact->address }}7</p>@endif
+                                @if($contact->email)<p>{{ __('admin_local.Email') }} : {{ $contact->email }}</p>@endif
+                                @if($contact->phone)<p>{{ __('admin_local.Phone') }} : {{ $contact->phone }}</p>@endif
                                 <div class="social-widget">
                                     <ul>
-                                        <li><a href="#"><i class="ti-facebook"></i></a></li>
+                                        @if($contact->facebook)<li><a href="{{ $contact->facebook }}"><i class="ti-facebook"></i></a></li>@endif
+                                        @if($contact->twitter)<li><a href="{{ $contact->twitter }}"><i class="ti-twitter-alt"></i></a></li>@endif
+                                        @if($contact->linkedin)<li><a href="{{ $contact->linkedin }}"><i class="ti-linkedin"></i></a></li>@endif
                                         {{-- <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
                                         <li><a href="#"><i class="ti-linkedin"></i></a></li> --}}
-                                        <li><a href="#"><i class="ti-instagram"></i></a></li>
+                                        @if($contact->youtube)<li><a href="{{ $contact->youtube }}"><i class="ti-youtube"></i></a></li>@endif
                                     </ul>
                                 </div>
                             </div>
@@ -187,9 +193,9 @@
                                 <ul>
                                     <li><a href="{{ url('/') }}">{{ __('admin_local.Home') }}</a></li>
                                     <li><a href="{{ route('donation.index') }}">{{ __('admin_local.Donate') }}</a></li>
-                                    <li><a href="{{ url('/') }}">{{ __('admin_local.Services') }}</a></li>
-                                    <li><a href="{{ url('/') }}">{{ __('admin_local.About') }}</a></li>
-                                    <li><a href="{{ url('/') }}">{{ __('admin_local.Contact') }}</a></li>
+                                    <li><a href="{{ route('services') }}">{{ __('admin_local.Services') }}</a></li>
+                                    <li><a href="{{ route('aboutUs') }}">{{ __('admin_local.About') }}</a></li>
+                                    <li><a href="{{ route('contact') }}">{{ __('admin_local.Contact') }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -243,6 +249,8 @@
     <script src="{{ asset('public/alfurqan/assets/js/jquery-plugin-collection.js')}}"></script>
     <!-- Custom script for this template -->
     <script src="{{ asset('public/alfurqan/assets/js/script.js')}}"></script>
+
+
 
     @stack('js')
 </body>

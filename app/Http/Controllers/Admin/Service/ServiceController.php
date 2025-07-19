@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -47,6 +48,7 @@ class ServiceController extends Controller
 
         $service = new Service();
         $service->service_name = $data->service_name;
+        $service->service_name_slug = Str::slug($data->service_name,'-');
         $service->service_short_details = $data->service_short_details;
         $service->service_details = $data->service_details;
         $dir = getDirectoryLink('services/service-images');
@@ -145,6 +147,7 @@ class ServiceController extends Controller
      */
     public function update(Request $data, string $id)
     {
+        // dd($data->service_image);
         $data->validate([
             'service_name'=>'required',
             'service_short_details'=>'required',
@@ -157,21 +160,21 @@ class ServiceController extends Controller
 
         $service = Service::findOrFail($id);
         $service->service_name = $data->service_name;
+        $service->service_name_slug = Str::slug($data->service_name,'-');
         $service->service_short_details = $data->service_short_details;
         $service->service_details = $data->service_details;
         $dir = getDirectoryLink('services/service-images');
         $makeDir = createDirectory($dir);
         if($data->service_image) {
-            $images = $data->service_image;
+            $image = $data->service_image;
             $image_names = [];
-            foreach ($images as $key => $image) {
-                $imageName = 'service'.$key.time().'.'.$image->getClientOriginalExtension();
-                $manager = new ImageManager(new Driver());
-                $imageName  =  $dir . '/' . $imageName;
-                $manager->read($image)->resize(300, 300)->save($imageName);
-                $image_names[] = $imageName;
-            }
-            $service_images = implode(",", $image_names);
+
+            $imageName = 'service'.time().'.'.$image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->resize(300, 300)->save($imageName);
+            $service_images = $imageName;
+            // dd($service_images);
         }else {
             $service_images = $service->service_image;
         }
