@@ -14,7 +14,7 @@ class PrayerTimeController extends Controller
         // dd($response['results']);
 
         $check = PrayerTime::where('last_update',date('Y-m-d'))->first();
-
+        
         if(!$check){
              $response = Http::get('https://www.islamicfinder.us/index.php/api/prayer_times?country=US&zipcode=10001');
             PrayerTime::where('id',1)->update([

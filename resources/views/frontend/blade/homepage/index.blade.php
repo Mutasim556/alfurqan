@@ -64,7 +64,7 @@
                         <span>5:50 am</span>
                     </div>
                 </div> --}}
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
                         <div class="item">
                             <h2>{{ __('admin_local.Dhuhr') }}</h2>
                             <span>{{ $prayer_time->dhuhr }}</span>
@@ -76,7 +76,7 @@
                             <span>{{ $prayer_time->asr }}</span>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
                         <div class="item">
                             <h2>{{ __('admin_local.Maghrib') }}</h2>
                             <span>{{ $prayer_time->maghrib }}</span>
@@ -86,6 +86,15 @@
                         <div class="item">
                             <h2>{{ __('admin_local.Isha') }}</h2>
                             <span>{{ $prayer_time->isha }}</span>
+                        </div>
+                    </div>
+                    @php
+                        $jummah = \App\Models\Admin\Jummah::where([['delete',0],['status',1]])->orderBy('id','DESC')->first();
+                    @endphp
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                        <div class="item">
+                            <h2>{{ __('admin_local.Jummah') }}</h2>
+                            @if($jummah)<span>{{ date('h:i A',strtotime($jummah->jummah_azan_time)) }}</span>@endif
                         </div>
                     </div>
                 </div>
@@ -208,27 +217,31 @@
                 </div>
             </div>
             <div class="event-slider">
+                @php
+                    $videos = \App\Models\Admin\VideoGallery::where([['status',1],['delete',0]])->get();
+                @endphp
+                @foreach ($videos as $video)
                 <div class="event-single-card">
                     <div class="image" style="text-align:center">
-                        <img src="{{ asset('public/alfurqan/assets/images/event/img-1.jpg') }}" alt="event">
-                        <a href="https://www.youtube.com/embed/3GSJ2DCXL8c" class="theme-btn py-1 px-4 mt-2 video-btn" data-type="iframe">{{__('admin_local.View')}}</a>
+                        <img src="{{ asset($video->video_thumbnail) }}" alt="event">
+                        <a href="https://www.youtube.com/embed/{{ $video->video_embeded_code }}" class="theme-btn py-1 px-4 mt-2 video-btn" data-type="iframe">{{__('admin_local.View')}}</a>
                     </div>
-                    <div class="content">
-                        <h2><a href="#" style="font-size:18px">Exploring Islamic Insights and Wisdom</a></h2>
-                        <ul>
-                            <li><img src="{{ asset('public/alfurqan/assets/images/event/time2.svg') }}" alt="time2"> January 16, 2024</li>
-                            <li><img src="{{ asset('public/alfurqan/assets/images/event/pin2.svg') }}" alt="pin2"> New York</li>
+                    <div class="content mt-0 py-2 px-2" style="background-color: lightgrey">
+                        <h2 class="text-center"><a href="#" style="font-size:18px">{{ $video->video_title }}</a></h2>
+                        <ul class="px-2">
+                            <li><img src="{{ asset('public/alfurqan/assets/images/event/time2.svg') }}" alt="time2"> {{ date('d F , Y',strtotime($video->video_date)) }}</li>
+                            <li style="float: right;padding:0px"><img src="{{ asset('public/alfurqan/assets/images/event/pin2.svg') }}" alt="pin2"> {{ $video->video_location }}</li>
                         </ul>
                     </div>
                 </div>
-                
+                @endforeach
             </div>
         </div>
     </section>
     @php
         $aboutUs = App\Models\Admin\AboutUs::first();
     @endphp
-    <section class="about-section-s3" style="margin-top:50px;">
+    <section class="about-section-s3" style="margin-top:70px;">
         <div class="container">
             <div class="wrap">
                 <div class="row align-items-center">

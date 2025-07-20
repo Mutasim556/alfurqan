@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
-
+ 
 Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(function(){
     Route::controller(AdminAuthController::class)->group(function(){
         Route::post('/forget-password','forgetPassword')->name('forget_password');
@@ -120,8 +120,8 @@ Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(functio
                 Route::get('/video-gallery','videoGallery')->name('videoGallery');
                 Route::post('/video-gallery','videoGalleryStore')->name('videoGalleryStore');
                 Route::get('/gallery/update/status/{id}/{status}','updateGalleryStatus');
-                Route::get('/gallery/{id}/edit','edit');
-                Route::put('/gallery/{id}','update');
+                Route::get('/gallery/{id}/edit','editGallery');
+                Route::put('/gallery/{id}','updateGallery');
                 Route::delete('/gallery/{id}','destroyGallery');
             });
         });

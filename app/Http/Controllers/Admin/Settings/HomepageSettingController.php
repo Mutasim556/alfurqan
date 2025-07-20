@@ -31,7 +31,7 @@ class HomepageSettingController extends Controller
         $sliderText = SliderText::first();
         // dd($sliderText);
         if($sliderText==null){
-            $create = new SliderText();
+            $create = new SliderText(); 
             $create->title = NULL;
             $create->short_details = NULL;
             $create->button_text = NULL;
@@ -357,5 +357,86 @@ class HomepageSettingController extends Controller
             'hasEditPermission' => hasPermission(['video-gallery-update']),
             'hasDeletePermission' => hasPermission(['video-gallery-delete']),
         ], 200);
+    }
+
+    public function updateGalleryStatus(Request $data){
+        VideoGallery::where('id',$data->id)->update(['status'=>$data->status,'updated_at'=>Carbon::now()]);
+        $video = VideoGallery::where('id',$data->id)->first();
+        return $video;
+    }
+
+    public function editGallery(string $id){
+        $video = VideoGallery::withoutGlobalScope('translate')->findOrFail($id);
+        return response($video);
+    }
+
+    public function updateGallery(Request $data,string $id){
+        $data->validate([
+            'video_title'=>'required',
+            'video_embeded_code'=>'required',
+            'video_date'=>'required',
+        ],[
+            'video_title.required'=>__('admin_local.Title is required'),
+            'video_embeded_code.required'=>__('admin_local.Embeded code is required'),
+            'video_date.required'=>__('admin_local.Video date is required'),
+        ]);
+
+        $video = VideoGallery::findOrFail($id);
+        $video->video_title = $data->video_title;
+        $video->video_embeded_code = $data->video_embeded_code;
+        $video->video_date = $data->video_date;
+        $video->video_location = $data->video_location;
+
+        $dir = getDirectoryLink('video/thumbnail');
+        $makeDir = createDirectory($dir);
+        if($data->video_thumbnail) {
+            $image = $data->video_thumbnail;
+            $imageName = 'thumbnail'.time().'.'.$image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->resize(375,444)->save($imageName);
+            $thumbnail = $imageName;
+        }else {
+            $thumbnail = $video->video_thumbnail;
+        }
+
+        $video->video_thumbnail = $thumbnail;
+        $video->updated_by = Auth::guard('admin')->user()->id;
+
+        $video->save();
+
+        $languages =  Language::where([['status', 1], ['delete', 0]])->get();
+        foreach ($languages as $lang) {
+            $video_title = $lang->lang != 'en' ? 'video_title_' . $lang->lang : 'video_title';
+            if ($data->$video_title != null) {
+                Translation::updateOrInsert([
+                    'translationable_type'  => 'App\Models\Admin\VideoGallery',
+                     'translationable_id'    => $video->id,
+                     'locale'                => $lang->lang,
+                     'key'                   => 'video_title',
+                ],[
+                    'value'                 => $data->$video_title,
+                    'updated_at'            => Carbon::now(),
+                ]);
+            }
+        }
+        return response([
+            'title' => __('admin_local.Congratulations !'),
+            'text' => __('admin_local.Updated successfully.'),
+            'confirmButtonText' => __('admin_local.Ok'),
+        ], 200);
+    }
+
+    public function destroyGallery(string $id){
+        $video = VideoGallery::findOrFail($id);
+        $video->delete=1;
+        $video->updated_at=Carbon::now();
+        $video->updated_by=Auth::guard('admin')->user()->id;
+        $video->save();
+        return response([
+            'title'=>__('admin_local.Congratulations !'),
+            'text'=>__('admin_local.Deleted successfully.'),
+            'confirmButtonText'=>__('admin_local.Ok'),
+        ]);
     }
 }

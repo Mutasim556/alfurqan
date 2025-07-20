@@ -15,7 +15,7 @@
         .loader-box .loader-35:after {
             height: 20px;
             width: 10px;
-        }
+        } 
 
         .loader-box .loader-35:before {
             width: 20px;
@@ -166,7 +166,7 @@
     {{-- Add User Modal Start --}}
 
     <div class="modal fade" id="edit-gallery-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg"
-        aria-hidden="true">
+        aria-hidden="true"> 
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center" style="border-bottom:1px dashed gray">
@@ -178,10 +178,10 @@
                 <p class="px-3 text-danger"><i>{{ __('admin_local.The field labels marked with * are required input fields.') }}</i>
                 </p>
                 <div class="modal-body" style="margin-top: -20px">
-                    <form id="edit_gallery_form" enctype="multipart/form-data">
+                    <form id="edit_video_form" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" id="gallery_id" name="gallery_id" value="">
+                        <input type="hidden" id="video_id" name="video_id" value="">
                         <div class="row">
                             <div class="col-sm-12 col-xl-12">
                                 <ul class="nav nav-pills nav-primary my-0" id="pills-successtab" role="tablist">
@@ -192,20 +192,20 @@
                                             ['default', 1],
                                         ])->first();
                                     @endphp
-                                    <li class="nav-item"><a class="nav-link active" id="pills-defaultLang-tab"
-                                            data-bs-toggle="pill" href="#pills-defaultLang" role="tab"
-                                            aria-controls="pills-defaultLang" aria-selected="true">{{ $lang->name }}
+                                    <li class="nav-item"><a class="nav-link active" id="epills-defaultLang-tab"
+                                            data-bs-toggle="pill" href="#epills-defaultLang" role="tab"
+                                            aria-controls="epills-defaultLang" aria-selected="true">{{ $lang->name }}
                                             ( {{ __('admin_local.Default') }} )</a></li>
                                     @foreach (getLangs() as $lang)
-                                        <li class="nav-item"><a class="nav-link" id="pills-{{ $lang->name }}-tab"
-                                                data-bs-toggle="pill" href="#pills-{{ $lang->name }}" role="tab"
-                                                aria-controls="pills-{{ $lang->name }}"
+                                        <li class="nav-item"><a class="nav-link" id="epills-{{ $lang->name }}-tab"
+                                                data-bs-toggle="pill" href="#epills-{{ $lang->name }}" role="tab"
+                                                aria-controls="epills-{{ $lang->name }}"
                                                 aria-selected="true">{{ $lang->name }}</a></li>
                                     @endforeach
                                 </ul>
                                 <div class="tab-content mt-3" id="pills-successtabContent">
-                                    <div class="tab-pane fade show active" id="pills-defaultLang" role="tabpanel"
-                                        aria-labelledby="pills-defaultLang-tab">
+                                    <div class="tab-pane fade show active" id="epills-defaultLang" role="tabpanel"
+                                        aria-labelledby="epills-defaultLang-tab">
                                         <div class="form-group">
                                             <label for="">{{ __('admin_local.Video Title') }} (
                                                 {{ __('admin_local.Default') }} ) *</label>
@@ -222,8 +222,8 @@
 
                                             langCode.push("{{ $lang->lang }}");
                                         </script>
-                                        <div class="tab-pane fade" id="pills-{{ $lang->name }}" role="tabpanel"
-                                            aria-labelledby="pills-{{ $lang->name }}-tab">
+                                        <div class="tab-pane fade" id="epills-{{ $lang->name }}" role="tabpanel"
+                                            aria-labelledby="epills-{{ $lang->name }}-tab">
                                             <div class="form-group">
                                                 <label for="">{{ __('admin_local.Video Title') }} (
                                                     {{ $lang->name }} )</label>
