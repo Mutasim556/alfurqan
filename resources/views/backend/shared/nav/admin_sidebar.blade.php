@@ -61,6 +61,11 @@
                             <span> {{ __('admin_local.Contact') }} </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.contactUsMessages') }}" class="sidebar-link">
+                            <span> {{ __('admin_local.Messages') }} </span>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </li>

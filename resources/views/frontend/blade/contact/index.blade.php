@@ -68,41 +68,67 @@
                     <div class="row">
 
                         <div class="col col-xl-5 col-lg-5 col-md-5 col-12">
-                            <form method="post" action="mail-contact.php" class="contact-validation-active" id="contact-form-main">
+                            <form method="post" method="{{ route('contact') }}" class="contact-validation-active" >
+                                @csrf
                                 <div>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Your Name*">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
+                                        placeholder="{{ __("admin_local.Your Name") }}*" value="{{ old('name') }}">
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email*">
+                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone"
+                                        placeholder="{{ __('admin_local.Your Phone Number') }}*" value="{{ old('phone') }}">
+                                    @error('phone')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
-                                    <input type="text" class="form-control" name="adress" id="adress"
-                                        placeholder="Adress">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"
+                                        placeholder="{{ __('admin_local.Your Email') }}*" value="{{ old('email') }}">
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
-                                    <select name="service" class="form-control">
-                                        <option disabled="disabled" selected="">Become a volunteer</option>
-                                        <option>Quick fundraising</option>
-                                        <option>Start donating</option>
-                                        <option>Help Now</option>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address"
+                                        placeholder="Adress" value="{{ old('address') }}">
+                                    @error('address')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <select name="service" class="form-control @error('service') is-invalid @enderror">
+                                        <option value="help_now" {{ old('service')=='help_now'?'selected':'' }}>Help Now</option>
+                                        <option value="become_a_member" {{ old('service')=='become_a_member'?'selected':'' }} >Become a volunteer</option>
+                                        <option value="quick_fundraising" {{ old('service')=='quick_fundraising'?'selected':'' }}>Quick fundraising</option>
+                                        <option value="start_donation" {{ old('service')=='start_donation'?'selected':'' }}>Start donating</option>
                                     </select>
+                                    @error('service')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="fullwidth">
-                                    <textarea class="form-control" name="note" id="note"
-                                        placeholder="Message..."></textarea>
+                                    <textarea class="form-control" name="message" id="message"
+                                        placeholder="Message...">{{ old('message') }}</textarea>
+                                    @error('message')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="submit-area">
-                                    <button type="button" class="theme-btn">{{ __('admin_local.Get in Touch') }}</button>
-                                    <div id="loader">
-                                        <i class="ti-reload"></i>
-                                    </div>
+                                    <button type="submit" class="theme-btn">{{ __('admin_local.Get in Touch') }}</button>
+
                                 </div>
-                                <div class="clearfix error-handling-messages">
-                                    <div id="success">Thank you</div>
-                                    <div id="error"> Error occurred while sending email. Please try again later.
+                                <div class="clearfix text-center" >
+                                    @if (session()->has('success'))
+                                        <div class="text-success" style="font-size:16px;font-weight:700;">{{ __('admin_local.Thank you for your messages .We will contact as soon as possible.') }}</div>
+                                    @endif
+                                    @if(session()->has('error'))
+                                    <div class="text-danger" style="font-size:16px;font-weight:700;">
+                                        {{ __('admin_local.Error occurred while sending messages. Please try again later.') }}
                                     </div>
+                                    @endif
                                 </div>
                             </form>
                         </div>

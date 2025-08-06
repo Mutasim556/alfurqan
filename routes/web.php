@@ -83,6 +83,7 @@ Route::middleware('frontLang')->group(function(){
     Route::controller(OtherPagesController::class)->group(function(){
         Route::get('about-us','aboutUs')->name('aboutUs');
         Route::get('contact','contact')->name('contact');
+        Route::post('contact','contactStore')->name('contact')->middleware('throttle:1,5');
         Route::get('services','services')->name('services');
         Route::get('services/{slug}','serviceDetails')->name('serviceDetails');
         Route::get('events','events')->name('events');

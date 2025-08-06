@@ -200,15 +200,14 @@
                             </div>
                         </div>
                         <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
-                            <div class="widget newsletter-widget">
+                            <div class="widget link-widget s2">
                                 <div class="widget-title">
-                                    <h3>{{ __('admin_local.Newsletter') }}</h3>
+                                    <h3>{{ __('admin_local.Others') }}</h3>
                                 </div>
-                                <form>
-                                    <input type="email" class="form-control" name="mail" id="mail"
-                                        placeholder="Your Email...">
-                                    <input class="theme-btn" type="submit" value="Subscribe">
-                                </form>
+                                <ul>
+                                    <li><a href="{{ url('/') }}">{{ __('admin_local.Privacy and Policy') }}</a></li>
+                                    <li><a href="{{ route('donation.index') }}">{{ __('admin_local.About') }}</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>

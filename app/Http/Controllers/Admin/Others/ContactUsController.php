@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Others;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Contact;
+use App\Models\Admin\Message;
 use Illuminate\Http\Request;
 
 class ContactUsController extends Controller
@@ -40,5 +41,11 @@ class ContactUsController extends Controller
 
         $contactinfo->save();
         return back();
+    }
+
+
+    public function contactUsMessages(){
+        $messages =Message::where('reply_status',0)->get();
+        return view('backend.blade.others.messages',compact('messages'));
     }
 }

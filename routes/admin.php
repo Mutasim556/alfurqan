@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
- 
+
 Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(function(){
     Route::controller(AdminAuthController::class)->group(function(){
         Route::post('/forget-password','forgetPassword')->name('forget_password');
@@ -103,6 +103,7 @@ Route::prefix('admin')->middleware('backendLang')->name('admin.')->group(functio
         Route::controller(ContactUsController::class)->prefix('contact-us')->group(function () {
             Route::get('/update/contact-us', 'contactUs')->name('contactUs');
             Route::post('/update/contact-us', 'updateContactUs')->name('updateContactUs');
+            Route::get('/messages', 'contactUsMessages')->name('contactUsMessages');
         });
         /** Contact End */
 
