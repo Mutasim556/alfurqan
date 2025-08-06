@@ -224,17 +224,18 @@
                 <div class="event-single-card">
                     <div class="image" style="text-align:center">
                         <img src="{{ asset($video->video_thumbnail) }}" alt="event">
-                        <a href="https://www.youtube.com/embed/{{ $video->video_embeded_code }}" class="theme-btn py-1 px-4 mt-2 video-btn" data-type="iframe">{{__('admin_local.View')}}</a>
+                        <a href="https://www.youtube.com/embed/{{ $video->video_embeded_code }}" class="theme-btn py-0 px-4 mt-2 video-btn" style="font-size:14px;" data-type="iframe">{{__('admin_local.View')}}</a>
                     </div>
                     <div class="content mt-0 py-2 px-2" style="background-color: lightgrey">
-                        <h2 class="text-center"><a href="#" style="font-size:18px">{{ $video->video_title }}</a></h2>
+                        <h2 class="text-center"><a href="#">{{ $video->video_title }}</a></h2>
                         <ul class="px-2">
-                            <li><img src="{{ asset('public/alfurqan/assets/images/event/time2.svg') }}" alt="time2"> {{ date('d F , Y',strtotime($video->video_date)) }}</li>
-                            <li style="float: right;padding:0px"><img src="{{ asset('public/alfurqan/assets/images/event/pin2.svg') }}" alt="pin2"> {{ $video->video_location }}</li>
+                            <li ><img src="{{ asset('public/alfurqan/assets/images/event/time2.svg') }}" alt="time2"> {{ date('d F , Y',strtotime($video->video_date)) }}</li>
+                            <li style="float: right;padding:0px;"><img src="{{ asset('public/alfurqan/assets/images/event/pin2.svg') }}" alt="pin2"> {{ $video->video_location }}</li>
                         </ul>
                     </div>
                 </div>
                 @endforeach
+                
             </div>
         </div>
     </section>

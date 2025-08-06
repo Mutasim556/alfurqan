@@ -518,7 +518,7 @@
 
     /*     event - slider */
     $('.event-slider').slick({
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         arrows: true,
         responsive: [{
@@ -536,7 +536,7 @@
                 }
             },
             {
-                breakpoint: 767,
+                breakpoint: 350,
                 settings: {
                     slidesToShow: 1,
                     dots: true,
